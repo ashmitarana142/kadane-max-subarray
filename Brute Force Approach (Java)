@@ -1,0 +1,40 @@
+public class BruteForceSolution {
+    public int maxSubArray(int[] nums) {
+        int maxSum = Integer.MIN_VALUE;
+
+        // Try every possible subarray
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i; j < nums.length; j++) {
+                int currentSum = 0;
+
+                // Sum elements from i to j
+                for (int k = i; k <= j; k++) {
+                    currentSum += nums[k];
+                }
+
+                // Update maxSum if current is greater
+                if (currentSum > maxSum) {
+                    maxSum = currentSum;
+                }
+            }
+        }
+
+        return maxSum;
+    }
+
+    public static void main(String[] args) {
+        BruteForceSolution sol = new BruteForceSolution();
+        int[] nums = {5, 4, -1, 7, 8};
+        System.out.println("Maximum Subarray Sum (Brute Force) = " + sol.maxSubArray(nums));
+    }
+}
+
+
+
+
+
+//Tries every subarray → O(n²)
+
+//Sums each subarray → another O(n)
+
+//Total = O(n³)
